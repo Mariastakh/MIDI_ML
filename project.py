@@ -126,26 +126,3 @@ print(pm)
 testPattern.instruments.append(inst)
 testPattern.write('out.mid')
 
-# FEATURE EXTRACTION:
-#path = '/Users/default/Documents/goldsmiths_year_3/creative_ml/scikit_test/lmd_full/0/0a5e534d640455415ca1fc15bc1bb6a7.mid'
-path = '/Users/default/Documents/goldsmiths_year_3/creative_ml/scikit_test/short.mid'
-
-# Extract features:
-def get_features(path):
-
-	file = pretty_midi.PrettyMIDI(path)
-	print(file)
-
-	tempo = file.get_beats()
-	n = pretty_midi.note_number_to_name(96);
-	roll = file.get_piano_roll(100);
-	
-	features = [tempo]
-			#print(features)
-	print(n)
-	print(len(roll))
-	print(roll[0])
-	return features #normalize_features([tempo, num_sig_changes, resolution, ts_1, ts_2])
-
-
-#get_features(path)
