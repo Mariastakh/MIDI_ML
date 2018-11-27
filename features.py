@@ -17,11 +17,25 @@ midi_path = '/Users/default/Documents/goldsmiths_year_3/creative_ml/scikit_test/
 total_velocity = sum(sum(midi_data.get_chroma()))
 print [sum(semitone)/total_velocity for semitone in midi_data.get_chroma()]
 
+# Using music21 library, obtain the key:
 score = music21.converter.parse(midi_path )
 key = score.analyze('key')
 print(key.tonic.name, key.mode)
-#def c_major(chroma_array):
-	#for note in chroma_array:
+
+# Obtain the length of notes
+print('ONSETS :')
+print(midi_data.get_onsets())
+
+# Piano roll
+print(len(midi_data.instruments[0].notes))
+
+# Note lengths:
+lengthsOfNotes = []
+print('note lengths:')
+for i in range (len(midi_data.instruments[0].notes)):
+	print(midi_data.instruments[0].notes[i].end - midi_data.instruments[0].notes[i].start)
+	lengthsOfNotes.append(midi_data.instruments[0].notes[i].end - midi_data.instruments[0].notes[i].start)
+print(lengthsOfNotes)
 
 
 # FEATURE EXTRACTION:

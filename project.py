@@ -67,8 +67,6 @@ for val in pattern:
 #print(midiVals[0][0][2])
 
 
-
-
 # Get the total length, but also save the incrementing time values in an array for later reference:
 timesArray = []
 timeCount = 0.0
@@ -81,12 +79,16 @@ print('Time Array')
 print(timesArray)
 
 
-
 # if the first value is an end-note, delete it:
 if midiVals[0][0][2] == 64:
 	print('BAD Start')
 	print(midiVals[0])
 	del midiVals[0]
+	if midiVals[0][0][2] == 64:
+		print('BAD Start')
+		print(midiVals[0])
+		del midiVals[0]
+
 
 # if the last value is not an end-note, delete it:
 if midiVals[len(midiVals)-1][0][2] is not 64:
@@ -98,11 +100,22 @@ print('----')
 print('CLEANED OUTPUT:')
 print(midiVals)
 
+# get the actual lengths of the notes, we can use this later. 
+# time is in seconds
+lengthsOfNotes = []
+for i in range(1, len(midiVals), 2):
+	length = midiVals[i][1]
+	lengthsOfNotes.append(length)
+print("THE LENGTHS : ")
+print(lengthsOfNotes)
+
 # Reconstruct the MIDI pattern using pretty_midi:
 pm = pretty_midi.PrettyMIDI(initial_tempo=120)
 testPattern = pretty_midi.PrettyMIDI()
 inst = pretty_midi.Instrument(program=42, is_drum=False, name='pattern')
 pm.instruments.append(inst)
+
+
 
 #for val in midiVals:
 #for val in midiVals[0::2]:
