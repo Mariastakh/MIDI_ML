@@ -1,3 +1,6 @@
+Python scripts to enable extraction of MIDI patterns from Ableton, reformatting and
+extraction features such as note lengths and key signature. 
+
 Libraries:
 
 Extracting MIDI information from Ableton: 
